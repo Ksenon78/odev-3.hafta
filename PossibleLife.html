@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Planets and Moons That Might Possess Possible Life</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+            .gallery-img:hover {
+                transform: scale(1.05);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Planets and Moons That Might Possess Possible Life</h2>
+        <div class="row" id="gallery">
+        </div>
+    </div>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const planets = [
+            {
+                name: "Kepler-186f",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Kepler186f-ArtistConcept-20140417.jpg/290px-Kepler186f-ArtistConcept-20140417.jpg"
+            },
+            {
+                name: "Kepler-22b",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Kepler22b-artwork.jpg/300px-Kepler22b-artwork.jpg"
+            },
+            {
+                name: "Europa (Moon)",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Europa_-_Perijove_45_%28cropped%29.png/290px-Europa_-_Perijove_45_%28cropped%29.png"
+            },
+            {
+                name: "Kepler-452b",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kepler-452b_artist_concept.jpg/300px-Kepler-452b_artist_concept.jpg"
+            },
+            {
+                name: "Teegarden's Star b",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Teegarden%27s_Star_B_Artistic_depiction.png/290px-Teegarden%27s_Star_B_Artistic_depiction.png"
+            }
+        ];
+
+
+    function loadGallery() {
+        const gallery = document.getElementById("gallery");
+        planets.forEach(planet => {
+            const col = document.createElement("div");
+            col.className = "col-md-4 col-sm-6 mb-3";
+            col.innerHTML = `<img src="${planet.image}" class="gallery-img" data-bs-toggle="modal"
+            data-bs-target="#imageModal" onclick="showImage('${planet.image}', '${planet.name}')">`;
+            gallery.appendChild(col);
+        });
+    }
+
+    function showImage(src, title) {
+        document.getElementById("modalImage").src = src;
+        document.getElementById("imageTitle").innerText = title;
+    }
+
+    document.addEventListener("DOMContentLoaded", loadGallery);
+    </script>
+
+</body>
+</html>
